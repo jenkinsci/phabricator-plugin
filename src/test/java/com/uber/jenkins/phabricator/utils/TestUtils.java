@@ -32,6 +32,7 @@ import com.uber.jenkins.phabricator.coverage.CodeCoverageMetrics;
 import com.uber.jenkins.phabricator.credentials.ConduitCredentials;
 import com.uber.jenkins.phabricator.credentials.ConduitCredentialsImpl;
 import com.uber.jenkins.phabricator.uberalls.UberallsClient;
+import com.uber.jenkins.phabricator.unit.UnitResult;
 import hudson.EnvVars;
 import hudson.FilePath;
 import hudson.plugins.cobertura.CoberturaPublisher;
@@ -70,6 +71,8 @@ public class TestUtils {
     public static final String TEST_PHID = "PHID-not-real";
     private static final String TEST_CREDENTIALS_ID = "not-a-real-uuid-for-credentials";
     private static final String TEST_CONDUIT_URL = "http://example.gophers";
+    private static final String TEST_UNIT_NAMESPACE = "unit namespace";
+    private static final String TEST_UNIT_NAME = "fake test name";
 
     public static Logger getDefaultLogger() {
         return new Logger(new PrintStream(new ByteArrayOutputStream()));
@@ -230,6 +233,17 @@ public class TestUtils {
                 false,
                 false,
                 SourceEncoding.UTF_8,
+                1
+        );
+    }
+
+    public static UnitResult getDefaultUnitResult() {
+        return new UnitResult(
+                TEST_UNIT_NAMESPACE,
+                TEST_UNIT_NAME,
+                1.0f,
+                0,
+                0,
                 1
         );
     }
